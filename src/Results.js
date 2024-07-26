@@ -2,22 +2,17 @@ import React from "react";
 import Meaning from "./Meaning";
 
 export default function Results(props){
-    if (props.definition) {
-        return (
-          <div className="Result">
-            <section>
-              <h1>{props.definition.word}</h1> 
-            </section>
-            {props.definition.meanings.map(function (meaning, index) {
-              return (
-                <section key={index}>
-                  <Meaning meaning={meaning} />
-                </section>
-              );
+    if (props.results){
+        return <div className="Results">
+            <h2>{props.results.word}</h2> 
+            {props.results.meanings.map(function(meaning, index){
+                return <div key={index}>
+                    <Meaning meaning={meaning} />
+                    </div>;
             })}
-          </div>
-        );
-      } else {
+    </div>
+    } else {
         return null;
-      }
     }
+
+      };
