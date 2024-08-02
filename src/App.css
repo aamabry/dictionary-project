@@ -1,5 +1,9 @@
 body {
-  background: gray;
+  background-image: url("https://media.architecturaldigest.com/photos/64c92a03fed32848a81d1e7d/master/w_2240%2Cc_limit/GettyImages-1436625636.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  
 }
 
 a {
@@ -16,9 +20,10 @@ a {
 }
 
 .App-logo {
-  max-width: 400px;
-  display: block;
-  margin: 0 auto;
+display: block;
+margin: 30px auto;
+
+
 }
 
 .App-footer {

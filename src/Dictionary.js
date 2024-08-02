@@ -6,12 +6,17 @@ import Photos from "./Photos";
 
 export default function Dictionary(props){
 let [keyword, setKeyword] = useState(props.defaultKeyword);
-let [results, setResults] = useState(null);
+let [definition, setDefinition] = useState(null);
 let [loaded, setLoaded] = useState(false);
 let [photos, setPhotos] = useState(null);
 
 function handleDictionaryResponse(response){
-    setResults(response.data[0]);
+    setDefinition(response.data);
+
+    let pexelsApiKey = "vzfLNGWEgDLwmNQosc4VhOSDNMFSREKhJnQYVBCzTZrAsP9a2w6ztdPA";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=9`
+    let headers = {"Authorization" : `${pexelsApiKey}`}
+    axios.get(pexelsApiUrl, { headers: headers}).then(handlePexelsResponse);
 }
 
 function handlePexelsResponse(response) {
@@ -19,13 +24,9 @@ function handlePexelsResponse(response) {
 }
 
 function search() {
-    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${keyword}`;
+    let apiKey = "1b509431b344bbaa8c5fo44ef08bca6t";
+    let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
     axios.get(apiUrl).then(handleDictionaryResponse);
-
-    let pexelsApiKey = "vzfLNGWEgDLwmNQosc4VhOSDNMFSREKhJnQYVBCzTZrAsP9a2w6ztdPA";
-    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=9`
-    let headers = {"Authorization" : `${pexelsApiKey}`}
-    axios.get(pexelsApiUrl, { headers: headers}).then(handlePexelsResponse);
 }
 
 function handleSubmit(event){
@@ -47,16 +48,19 @@ if (loaded) {
         <div className="Dictionary">
             <section>
                 <h1>What are you looking for?</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="search" 
+                <form onSubmit={handleSubmit}>
+                <input 
+                type="search" 
+                placeholder="Search for a word..."
+                autoFocus={true}
                 onChange={handleKeywordChange} 
                 defaultValue={props.defaultKeyword}/>
-            </form>
+                </form>
             <div className="hint">
                 Suggested words: sunset, pizza, metal, witches....
             </div>
             </section>
-            <Results results={results}/>
+            <Results definition={definition}/>
             <Photos photos={photos}/>
         </div>
     )

@@ -3,22 +3,16 @@ import "./Meaning.css";
 import Synonyms from "./Synonyms";
 
 export default function Meaning(props) {
-      return (
-        <div className="Meaning">
-            <h3>{props.meaning.partOfSpeech}</h3>
-            {props.meaning.definitions.map(function(definition, index){
-                return (
-                    <div key={index}>
-                        <div className="definition">
-                        {definition.definition}
-                        </div>
-                        <div className="example">
-                        <em>{definition.example}</em>
-                        </div>
-                        <Synonyms synonyms={definition.synonyms} />
-                        </div>
-                )
-            })}
-        </div>
-      );
-    } 
+  if (props.meaning) {
+    return (
+      <div className="Meaning">
+        <h3>{props.meaning.partOfSpeech}</h3>
+        <p>{props.meaning.definition}</p>
+        <em>{props.meaning.example}</em>
+        <Synonyms synonyms={props.meaning.synonyms} />
+      </div>
+    );
+  } else {
+    return null;
+  }
+  }
