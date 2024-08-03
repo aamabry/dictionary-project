@@ -14,7 +14,7 @@ export default function App() {
       </main>
       <footer className='App-footer'>
         Coded by 
-        <a href='#' target='blank'> Audrey Mabry</a>
+        <a href='https://www.linkedin.com/in/audrey-mabry-2497b3128/' target='blank'> Audrey Mabry</a>
         , open-sourced on 
         <a href='https://github.com/aamabry/dictionary-project' target='blank'> Github</a>
         , and hosted on 
